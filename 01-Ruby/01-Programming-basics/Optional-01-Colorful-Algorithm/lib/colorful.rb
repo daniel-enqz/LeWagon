@@ -1,20 +1,19 @@
 def colorful?(number)
   # TODO: return true if the number is colorful, false otherwise
-  for i in (0...number.size-1) do
-    num = number[i].to_i * number[i+1].to_i
+  number = number.to_s.chars.map(&:to_i)
+
+  # Multiply subsequent index
+  for i in (0...number.size - 1) do
+    num = number[i] * number[i + 1]
     number << num
   end
-
-  i = 0
-  num = number[i].to_i * number[i+1].to_i * number[i+2].to_i
+  
+  # Multiply all numbers
+  num = number.each { |x| x * (x + 1) }
   number << num
 
-  if number.map(&:to_i).uniq.size < number.size
-    return false   
-  else
-    return true
-  end
+  # Logic Sequence
+  return number.uniq.size == number.size ? true : false
 end
-number = gets.chomp.split("")
-puts colorful?(number)
 
+puts colorful?(234)
