@@ -7,7 +7,7 @@ def colorful?(number)
     num = number[i] * number[i + 1]
     number << num
   end
-  
+
   # Multiply all numbers
   num = number.each { |x| x * (x + 1) }
   number << num
