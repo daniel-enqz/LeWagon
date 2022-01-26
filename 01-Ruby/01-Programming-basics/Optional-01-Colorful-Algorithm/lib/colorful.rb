@@ -15,7 +15,6 @@ def colorful?(number)
     return true
   end
 end
-
-number = gets.chomp
-puts colorful?(number.split(""))
+number = gets.chomp.split("")
+puts colorful?(number)
 
