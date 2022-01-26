@@ -8,7 +8,7 @@ def colorful?(number)
     arr = number
     num = arr.inject(:*)
     # Multiply subsequent index
-    for i in (0...number.size - 1) do
+    number.each_index do |i|
       product = number[i] * number[i + 1]
       number << product
     end
