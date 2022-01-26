@@ -5,7 +5,7 @@ def sum_with_for(min, max)
     sum = 0
     # CONSTRAINT: you should use a for..end structure
     for i in (min..max)
-      sum += i
+      sum += i 
     end
     return sum
   end
