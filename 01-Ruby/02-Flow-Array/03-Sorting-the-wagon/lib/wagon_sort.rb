@@ -1,4 +1,3 @@
 def wagon_sort(students)
-  students.sort_by { |name| name[0].downcase}
-  return students
+  return students.sort_by! { |name| name[0].downcase }
 end
