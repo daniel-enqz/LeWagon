@@ -5,13 +5,14 @@ def colorful?(number)
     true
   else
     # Multiply all numbers inside the array and store them in num
-    arr = number
-    num = arr.inject(:*)
+    num = number.inject(:*)
     # Multiply subsequent index
-    number.each_index do |i|
-      product = number[i] * number[i + 1]
-      number << product
+    arr = []
+    number.each_with_index do |n, index|
+      arr << (n[index] * n[index + 1])
     end
+    print arr
+    print number
     if number.uniq.size == number.size
       true
     else
@@ -21,5 +22,4 @@ def colorful?(number)
     end
   end
 end
-
-puts colorful?(23)
+puts colorful?(236)
