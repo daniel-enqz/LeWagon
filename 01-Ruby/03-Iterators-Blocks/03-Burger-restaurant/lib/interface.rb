@@ -39,7 +39,5 @@ end
 
 
 
-
-
 # DO NOT remove this line, written for testing purpose
 @variables = (local_variables.collect { |v| [v, binding.local_variable_get(v)] }).to_h
