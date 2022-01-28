@@ -1,12 +1,18 @@
 def size_splitter(array, size)
-  # TODO: Return an array of two arrays, the first containing
-  #       words of length `size`, the second containing all the other words
-  #       In addition to this split, each array should be *sorted*.
+  sorted_array = []
+  sorted_array << array.select { |element| element.length == size }
+  sorted_array << array.select { |element| element.length > size || element.length < size }
+  sorted_array.each { |x| x.sort! }
+  p sorted_array
 end
 
-def block_splitter(array)
-  # TODO: Return an array of two arrays, the first containing
-  #       elements for which the given block yields true,
-  #       the second containing all the other elements.
-  #       No sort needed this time.
+def block_splitter(beatles)
+  p_beatles = []
+  other_beatles = []
+  result = []
+  beatles.each_with_index do |_nil, i|
+    p_beatles.push(beatles[i]) if yield(beatles[i])
+    other_beatles.push(beatles[i]) if yield(beatles[i]) == false
+  end
+  result << p_beatles << other_beatles
 end
