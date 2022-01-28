@@ -9,32 +9,54 @@ DISHES_CALORIES = {
   "Sprite" => 150
 }
 
-HAPPY_MEAL = ["Cheese Burger", "French Fries", "Coca Cola"]
-BEST_OF_BIG_MAC = ["Big Mac", "French Fries", "Coca Cola"]
-BEST_OF_MCCHICKEN = ["McChicken", "Salad", "Sprite"]
+HAPPY_MEAL = {
+  "burger" => "Cheese Burger",
+  "side" => "French Fries",
+  "beverage" => "Coca Cola"
+}
+
+BEST_OF_BIG_MAC = {
+  "burger" => "Big Mac",
+  "side" => "French Fries",
+  "beverage" => "Coca Cola"
+}
+
+BEST_OF_MCCHICKEN = {
+  "burger" => "McChicken",
+  "side" => "Salad",
+  "beverage" => "Sprite"
+}
+
+# COMBOS = {
+#   "BEST_OF_MCCHICKEN" => {
+#     "burger" => "McChicken",
+#     "side" => "Salad",
+#     "beverage" => "Sprite"
+#   } 
+# }
 
 def poor_calories_counter(burger, side, beverage)
-  counter += DISHES_CALORIES[burger] + DISHES_CALORIES[side] + DISHES_CALORIES[beverage]
+  DISHES_CALORIES[burger] + DISHES_CALORIES[side] + DISHES_CALORIES[beverage]
 end
 
 def calories_counter(orders)
-  orders.map(&:upcase!)
   array = []
+  final_calories = []
   orders.each_slice(1) { |tuple| array.push(tuple) }
-  array.each_with_index do |meal, index|
-      if meal.include? "BEST OF BIGMAC"
-        poor_calories_counter(BEST_OF_BIG_MAC)
-      elsif meal.include? "HAPPY MEAL"
-        poor_calories_counter(HAPPY MEAL)        
-      elsif meal.include? "BEST OF MCCHICKEN"
-        poor_calories_counter(BEST_OF_MCCHICKEN)         
-      else
-        p meal
-      end
-  end 
+  array.each_with_index do |meal, _index|
+    if meal.map(&:upcase).include? "BEST OF BIG MAC"
+      final_calories << poor_calories_counter(BEST_OF_BIG_MAC["burger"], BEST_OF_BIG_MAC["side"], BEST_OF_BIG_MAC["beverage"])
+    elsif meal.map(&:upcase).include? "HAPPY MEAL"
+      final_calories << poor_calories_counter(HAPPY_MEAL["burger"], HAPPY_MEAL["side"], HAPPY_MEAL["beverage"])   
+    elsif meal.map(&:upcase).include? "BEST OF MCCHICKEN"
+      final_calories << poor_calories_counter(BEST_OF_MCCHICKEN["burger"], BEST_OF_MCCHICKEN["side"], BEST_OF_MCCHICKEN["beverage"])  
+    else
+      final_calories << DISHES_CALORIES[meal.join]
+    end
+  end
+  p final_calories
+  final_calories.sum
 end
-  # TODO: return number of calories for a less constrained order
-
 
 orders = ["French Fries", "Happy Meal", "Sprite", "Best Of McChicken"]
 puts calories_counter(orders)
