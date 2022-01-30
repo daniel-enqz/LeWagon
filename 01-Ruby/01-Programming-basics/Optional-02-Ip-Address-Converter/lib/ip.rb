@@ -10,7 +10,6 @@ def ip_to_num(ip_address)
   end
   final_result
 end
-
 ip_to_num("37.160.113.170")
 
 
