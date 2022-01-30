@@ -11,7 +11,7 @@ def ip_to_num(ip_address)
   final_result
 end
 
-p ip_to_num("37.160.113.170")
+ip_to_num("37.160.113.170")
 
 
 def num_to_ip(number)
