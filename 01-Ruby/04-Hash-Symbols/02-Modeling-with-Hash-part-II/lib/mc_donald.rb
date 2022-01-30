@@ -9,54 +9,39 @@ DISHES_CALORIES = {
   "Sprite" => 150
 }
 
-HAPPY_MEAL = {
-  "burger" => "Cheese Burger",
-  "side" => "French Fries",
-  "beverage" => "Coca Cola"
+COMBOS = {
+  "BEST_OF_MCCHICKEN" => {
+    "burger" => "McChicken",
+    "side" => "Salad",
+    "beverage" => "Sprite"
+  },
+
+  "BEST_OF_BIG_MAC" => {
+    "burger" => "Big Mac",
+    "side" => "French Fries",
+    "beverage" => "Coca Cola"
+  },
+
+  "HAPPY_MEAL" => {
+    "burger" => "Cheese Burger",
+    "side" => "French Fries",
+    "beverage" => "Coca Cola"
+  }
 }
 
-BEST_OF_BIG_MAC = {
-  "burger" => "Big Mac",
-  "side" => "French Fries",
-  "beverage" => "Coca Cola"
-}
-
-BEST_OF_MCCHICKEN = {
-  "burger" => "McChicken",
-  "side" => "Salad",
-  "beverage" => "Sprite"
-}
-
-# COMBOS = {
-#   "BEST_OF_MCCHICKEN" => {
-#     "burger" => "McChicken",
-#     "side" => "Salad",
-#     "beverage" => "Sprite"
-#   } 
-# }
-
-def poor_calories_counter(burger, side, beverage)
-  DISHES_CALORIES[burger] + DISHES_CALORIES[side] + DISHES_CALORIES[beverage]
+def poor_calories_counter(array_of_dishes)
+  DISHES_CALORIES[array_of_dishes[0]] + DISHES_CALORIES[array_of_dishes[1]] + DISHES_CALORIES[array_of_dishes[2]]
 end
 
 def calories_counter(orders)
-  array = []
   final_calories = []
-  orders.each_slice(1) { |tuple| array.push(tuple) }
-  array.each_with_index do |meal, _index|
-    if meal.map(&:upcase).include? "BEST OF BIG MAC"
-      final_calories << poor_calories_counter(BEST_OF_BIG_MAC["burger"], BEST_OF_BIG_MAC["side"], BEST_OF_BIG_MAC["beverage"])
-    elsif meal.map(&:upcase).include? "HAPPY MEAL"
-      final_calories << poor_calories_counter(HAPPY_MEAL["burger"], HAPPY_MEAL["side"], HAPPY_MEAL["beverage"])   
-    elsif meal.map(&:upcase).include? "BEST OF MCCHICKEN"
-      final_calories << poor_calories_counter(BEST_OF_MCCHICKEN["burger"], BEST_OF_MCCHICKEN["side"], BEST_OF_MCCHICKEN["beverage"])  
-    else
-      final_calories << DISHES_CALORIES[meal.join]
-    end
-  end
-  p final_calories
+  final_calories << poor_calories_counter(COMBOS["BEST_OF_BIG_MAC"].values) if orders.include? "Best Of Big Mac"
+  final_calories << poor_calories_counter(COMBOS["HAPPY_MEAL"].values) if orders.include? "Happy Meal"
+  final_calories << poor_calories_counter(COMBOS["BEST_OF_MCCHICKEN"].values) if orders.include? "Best Of McChicken"
+  # final_calories << DISHES_CALORIES.delete("French Fries", "Sprite")
+  DISHES_CALORIES.each { |key, value| final_calories << value if orders.include? key }
   final_calories.sum
 end
 
-orders = ["French Fries", "Happy Meal", "Sprite", "Best Of McChicken"]
+orders = ["Best Of Big Mac", "Salad", "Happy Meal", "Sprite"]
 puts calories_counter(orders)
