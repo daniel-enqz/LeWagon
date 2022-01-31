@@ -1,48 +1,27 @@
 def valid?(email)
   email.match?(/\w*@\w*\.(com|net|org|fr|de)/)
-  # TODO: return true if the email is valid, false otherwise
 end
 
 def clean_database(emails)
   valid_emails = []
   emails.each { |email| valid_emails << email if valid?(email) }
   return valid_emails
-  # TODO: return an array with the valid emails only
 end
 
 def group_by_tld(emails)
-  group_by_tld = {}
+  group_by_tld = { "de" => [], "com" => [], "fr" => [] }
   emails.each do |email|
-    case email
-    when /\w*@\w*\.(com)/
-      group_by_tld["com"] = [] if group_by_tld["com"] == nil
-      group_by_tld["com"] << email
-    when /\w*@\w*\.(fr)/
-      group_by_tld["fr"] = [] if group_by_tld["fr"] == nil
-      group_by_tld["fr"] << email
-    when /\w*@\w*\.(net)/
-      group_by_tld["net"] = [] if group_by_tld["net"] == nil
-      group_by_tld["net"] << email
-    when /\w*@\w*\.(org)/
-      group_by_tld["org"] = [] if group_by_tld["org"] == nil
-      group_by_tld["org"] << email
-    when /\w*@\w*\.(de)/
-      group_by_tld["de"] = [] if group_by_tld["de"] == nil
-      group_by_tld["de"] << email
-    end
+    index_of_p = email.index(".")
+    tld = email[index_of_p + 1..]
+    group_by_tld[tld] << email
   end
   group_by_tld
 end
 
 def compose_mail(email)
-  hash = {
-    username: "",
-    domain: "",
-    tld: ""
-  }
+  hash = { username: "", domain: "", tld: "" }
   index_of_ar = email.index("@")
   index_of_p = email.index(".")
-
   hash[:username] = email[0...index_of_ar]
   hash[:domain] = email[index_of_ar + 1...index_of_p]
   hash[:tld] = email[index_of_p + 1..]
@@ -104,4 +83,4 @@ def compose_translated_email(email)
   hash
 end
 
-compose_translated_email("julien@lewagon.fr")
+group_by_tld(["kevin@yahoo.fr", "edward@gmail.fr", "julien@mdn.com", "dimitri@berlin.de"])
