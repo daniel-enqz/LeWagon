@@ -55,10 +55,7 @@ end
 
 def compose_translated_email(email)
   hash = compose_mail(email)
-  hash[:subject] = ""
-  hash[:body] = ""
-  hash[:closing] = ""
-  hash[:signature] = ""
+  hash[:tld]
   if hash[:tld] == "en"
     hash[:subject] = translate(:subject, :en)
     hash[:body] = translate(:body, :en)
@@ -83,4 +80,4 @@ def compose_translated_email(email)
   hash
 end
 
-group_by_tld(["kevin@yahoo.fr", "edward@gmail.fr", "julien@mdn.com", "dimitri@berlin.de"])
+p compose_translated_email("julien@lewagon.fr")
