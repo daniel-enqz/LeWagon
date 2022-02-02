@@ -13,5 +13,5 @@ puts display(vending_machine)
 
 # A technician comes and refill the vending machine with 20 snacks.
 puts "Technician filling machine with 20 snacks"
-vending_machine.snack_count = vending_machine.snack_count + 20
+vending_machine.snack_count(20)
 puts display(vending_machine)
