@@ -31,4 +31,9 @@ class Cookbook
     @recipes.delete_at(recipe_index)
     update
   end
+
+  def destroy_all
+    @recipes = []
+    save_to_csv
+  end
 end
