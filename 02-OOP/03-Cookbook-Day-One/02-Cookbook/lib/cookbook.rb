@@ -3,7 +3,6 @@ require 'csv'
 
 class Cookbook
   def initialize(csv_file_path)
-    #Returns an sepcific recipie from the CSV
     @csv_file_path = csv_file_path
     @recipes = []
     CSV.foreach(@csv_file_path) do |row|
@@ -18,18 +17,18 @@ class Cookbook
       end
     end
   end
-  
+
   def all
     @recipes
   end
-  
+
   def add_recipe(recipe)
-    file = @recipes << recipe
+    @recipes << recipe
     update
   end
-  
+
   def remove_recipe(recipe_index)
-    file = @recipes.delete_at(recipe_index)
+    @recipes.delete_at(recipe_index)
     update
   end
 end
