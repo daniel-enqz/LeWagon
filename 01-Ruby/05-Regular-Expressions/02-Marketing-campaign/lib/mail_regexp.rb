@@ -53,31 +53,19 @@ def translate(keyword, language)
   return LOCALES[language][keyword]
 end
 
+def translation_process(hash, language)
+  hash[:subject] = translate(:subject, language)
+  hash[:body] = translate(:body, language)
+  hash[:closing] = translate(:closing, language)
+  hash[:signature] = translate(:signature, language)
+end
+
 def compose_translated_email(email)
   hash = compose_mail(email)
-  hash[:tld]
-  if hash[:tld] == "en"
-    hash[:subject] = translate(:subject, :en)
-    hash[:body] = translate(:body, :en)
-    hash[:closing] = translate(:closing, :en)
-    hash[:signature] = translate(:signature, :en)
-  elsif hash[:tld] == "fr"
-    hash[:subject] = translate(:subject, :fr)
-    hash[:body] = translate(:body, :fr)
-    hash[:closing] = translate(:closing, :fr)
-    hash[:signature] = translate(:signature, :fr)
-  elsif hash[:tld] == "de"
-    hash[:subject] = translate(:subject, :de)
-    hash[:body] = translate(:body, :de)
-    hash[:closing] = translate(:closing, :de)
-    hash[:signature] = translate(:signature, :de)
-  elsif hash[:tld] == "com"
-    hash[:subject] = "Our website is online"
-    hash[:body] = "Come and visit us!"
-    hash[:closing] = "See you soon"
-    hash[:signature] = "The Team"
-  end
+  translation_process(hash, :fr) if hash[:tld] == "fr"
+  translation_process(hash, :de) if hash[:tld] == "de"
+  translation_process(hash, :en) if hash[:tld] == "com"
   hash
 end
 
-p compose_translated_email("julien@lewagon.fr")
+compose_translated_email("julien@lewagon.fr")
