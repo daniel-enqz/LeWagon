@@ -61,7 +61,8 @@ class BankAccount < Transaction
 
   def add_transaction(amount)
     # TODO: add the amount in the transactions array
-    @transactions << amount
+    enhanced_transaction = Transaction.new(amount)
+    @transactions << enhanced_transaction.to_s
     # TODO: update the current balance (which represents the balance of the account)
     @balance += amount
     return amount
