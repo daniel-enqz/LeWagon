@@ -10,4 +10,4 @@ controller     = MealsController.new(repository)
 router = Router.new(controller)
 
 # Start the app
-# router.run
+router.run
