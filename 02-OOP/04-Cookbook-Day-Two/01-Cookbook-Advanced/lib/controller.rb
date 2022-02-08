@@ -15,8 +15,8 @@ class Controller
   def create
     name = @view.ask_for("name")
     description = @view.ask_for("description")
-    rating = @view.ask_for("rating")
-    prep_time = @view.ask_for("prep time")
+    rating = @view.ask_for("rating").to_i
+    prep_time = @view.ask_for("prep time").to_i
     new_recipe = Recipe.new(name: name, description: description, rating: rating, prep_time: prep_time)
     @cookbook.add_recipe(new_recipe)
     display_recipes

@@ -5,11 +5,12 @@ class View
   def display(recipes)
     recipes.each_with_index do |recipe, index|
       status = recipe.done? ? "[✅]" : "[ ]"
-      puts "#{index + 1}. #{recipe.name} #{status} ⏲️ PREP-TIME: #{recipe.prep_time} - ⭐ RATING:#{recipe.rating}\n.......#{recipe.description}"
+      puts "#{index + 1}. #{recipe.name} #{status} ⏲️ PREP-TIME: #{recipe.prep_time} - RATING:#{"⭐" * recipe.rating}\n.......#{recipe.description}"
     end
   end
 
   def ask_for(string)
+    puts "Please give ⏲️ PREP TIME in minutes and ⭐RATING from (1-5)"
     puts "What's the #{string}"
     print "> "
     gets.chomp

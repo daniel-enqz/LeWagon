@@ -4,8 +4,8 @@ class Recipe
   def initialize(attributes = {})
     @name = attributes[:name]
     @description = attributes[:description]
-    @rating = attributes[:rating]
-    @prep_time = attributes[:prep_time]
+    @rating = attributes[:rating].to_i
+    @prep_time = attributes[:prep_time].to_i
     @done = attributes[:done] || false
   end
 
