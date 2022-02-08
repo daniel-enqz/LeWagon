@@ -24,22 +24,31 @@ class MealRepository
   def create(meal)
     meal.id = correct_id
     @meals << meal
+    save_to_csv
   end
 
   def all
     return @meals
   end
 
-  def find
-    # @room_repository.find(row[:room_id]) # an instance of a room?
+  def find(id)
+    @meals.find { |meal| meal.id == id }
   end
 
   private
 
+  def save_to_csv
+    CSV.open(@csv_path, "wb") do |csv|
+      csv << ["id", "name", "price"]
+      @meals.each do |meal|
+        csv << [meal.id, meal.name, meal.price]
+      end
+    end
+  end
+
   def load_csv
     CSV.foreach(@csv_path, headers: true, header_converters: :symbol) do |row|
       row[:id] = row[:id].to_i
-      row[:name] = row[:name]
       row[:price] = row[:price].to_i
       @meals << Meal.new(id: row[:id], name: row[:name], price: row[:price])
     end
