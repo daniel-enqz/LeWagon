@@ -1,16 +1,11 @@
 require_relative '../repositories/meal_repository'
 require 'pry-byebug'
+require_relative 'base_view'
 
-class View
+class MealsView < BaseView
   def display(all_meals)
-    all_meals.each do |meal|
-      puts meal.name
+    all_meals.each_with_index do |meal, index|
+      puts "- #{index + 1}🍎 #{meal.name} 💸PRICE:#{meal.price}"
     end
-  end
-
-  def ask_for(string)
-    puts "What's the #{string}"
-    print ">"
-    gets.chomp
   end
 end
