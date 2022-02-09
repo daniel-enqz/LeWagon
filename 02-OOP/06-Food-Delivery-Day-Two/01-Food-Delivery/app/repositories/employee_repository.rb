@@ -9,7 +9,9 @@ class EmployeeRepository
     load_csv if File.exist?(@csv_path)
   end
 
-  def all_riders; end
+  def all_riders
+    @elements.select { |element| element if element.rider? }
+  end
 
   def find_by_username(username)
     @elements.find { |model| model.username == username }
@@ -28,9 +30,9 @@ class EmployeeRepository
 
   def save_to_csv
     CSV.open(@csv_path, "wb") do |csv|
-      csv << ["id", "username", "password"]
+      csv << ["id", "username", "password", "role"]
       @elements.each do |employee|
-        csv << [employee.id, employee.username, employee.password]
+        csv << [employee.id, employee.username, employee.password, employee.role]
       end
     end
   end
@@ -38,7 +40,7 @@ class EmployeeRepository
   def load_csv
     CSV.foreach(@csv_path, headers: true, header_converters: :symbol) do |row|
       row[:id] = row[:id].to_i
-      @elements << Employee.new(id: row[:id], username: row[:username], password: row[:password])
+      @elements << Employee.new(id: row[:id], username: row[:username], password: row[:password], role: row[:role])
     end
   end
 end
