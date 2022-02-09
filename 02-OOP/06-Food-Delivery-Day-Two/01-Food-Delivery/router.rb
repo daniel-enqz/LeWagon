@@ -29,7 +29,7 @@ class Router
     case action
     when 1 then @meals_controller.add
     when 2 then @meals_controller.list
-    when 3 then @meals_controller.edit
+    # when 3 then @meals_controller.edit
     when 4 then @meals_controller.delete
     end
     route_manager_action_(action)
@@ -39,7 +39,7 @@ class Router
     case action
     when 5 then @customers_controller.add
     when 6 then @customers_controller.list
-    when 7 then @customers_controller.edit
+    # when 7 then @customers_controller.edit
     when 8 then @customers_controller.delete
     when 9 then @orders_controller.add
     when 10 then @orders_controller.list_undelivered_orders

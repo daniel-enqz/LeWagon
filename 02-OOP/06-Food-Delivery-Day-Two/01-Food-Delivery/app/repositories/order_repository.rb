@@ -22,8 +22,12 @@ class OrderRepository
     save_to_csv
   end
 
+  def employee_undelivered(employee)
+    @elements.select { |order| order if order.employee.id == employee.id }
+  end
+
   def undelivered_orders
-    @elements.select { |element| element if element.delivered? == false}
+    @elements.select { |element| element if element.delivered? == false }
   end
 
   private
@@ -39,17 +43,12 @@ class OrderRepository
 
   def load_csv
     CSV.foreach(@orders_csv_path, headers: true, header_converters: :symbol) do |row|
-      row[:id] = row[:id].to_i
-      row[:delivered] = row[:delivered] == "true"
-      row[:meal_id] = row[:meal_id].to_i
-      row[:customer_id] = row[:customer_id].to_i
+      row[:id] = row[:id].to_i, row[:delivered] = row[:delivered] == "true"
+      row[:meal_id] = row[:meal_id].to_i, row[:customer_id] = row[:customer_id].to_i
       row[:employee_id] = row[:employee_id].to_i
       @elements << Order.new(
-        id: row[:id],
-        delivered: row[:delivered],
-        meal: @meal_repository.find(row[:meal_id]),
-        customer: @customer_repository.find(row[:customer_id]),
-        employee: @employee_repository.find(row[:employee_id])
+        id: row[:id], delivered: row[:delivered], meal: @meal_repository.find(row[:meal_id]),
+        customer: @customer_repository.find(row[:customer_id]), employee: @employee_repository.find(row[:employee_id])
       )
     end
   end
