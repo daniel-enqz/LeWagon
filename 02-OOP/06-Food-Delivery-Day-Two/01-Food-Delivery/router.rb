@@ -12,25 +12,18 @@ class Router
     puts ""
     puts "Welcome to FoodDelivery!"
     puts "🍑🍿🥦🧇   --    🥓🌭🍔🍒"
-
     while @running
-      @current_user = @sessions_controller.login while @current_user.nil?
-      if @current_user.manager?
-        display_manager_tasks
-        action = gets.chomp.to_i
-        print `clear`
-        route_manager_action(action)
-      else
-        display_rider_tasks
-        action = gets.chomp.to_i
-        print `clear`
-        route_rider_action(action)
-      end
+      @current_user = @sessions_controller.login until @current_user
+      @current_user.manager? ? display_manager_tasks : display_rider_tasks
+      action = gets.chomp.to_i
+      print `clear`
+      @current_user.manager? ? route_manager_action(action) : route_rider_action(action)
     end
   end
 
   private
 
+  # MANAGER ACTIONS-----------------------------------
   def route_manager_action(action)
     case action
     when 1 then @meals_controller.add
@@ -55,6 +48,7 @@ class Router
     end
   end
 
+  # RIDER ACTIONS-----------------------------------
   def route_rider_action(action)
     case action
     # when 1 then #TODO = ✅Mark one of my orders as delivered"
@@ -65,10 +59,12 @@ class Router
     end
   end
 
+  # GENERAL EXIT PROGRAM METHOD-----------------------------------
   def stop
     @running = false
   end
 
+  # MANAGER TASKS DISPLAYED-----------------------------------
   def display_manager_tasks
     puts "What do you want to do next?"
     puts "1 - 🧃Add new meal"
@@ -88,6 +84,7 @@ class Router
     puts "0 - 🌴EXIT"
   end
 
+  # RIDER TASKS DISPLAYED-----------------------------------
   def display_rider_tasks
     puts "What do you want to do next?"
     puts "1 - ✅Mark one of my orders as delivered"
