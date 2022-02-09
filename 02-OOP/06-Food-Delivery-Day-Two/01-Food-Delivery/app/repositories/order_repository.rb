@@ -22,16 +22,17 @@ class OrderRepository
     save_to_csv
   end
 
-  def all
+  def undelivered_orders
+    @elements.select { |element| element if element.delivered? == false}
   end
 
   private
 
   def save_to_csv
-    CSV.open(@csv_path, "wb") do |csv|
+    CSV.open(@orders_csv_path, "wb") do |csv|
       csv << ["id", "delivered", "meal_id", "customer_id", "employee_id"]
-      @elements.each do |employee|
-        csv << [order.id, order.delivered, meal.id, customer.id, employee.id]
+      @elements.each do |order|
+        csv << [order.id, order.delivered, order.meal.id, order.customer.id, order.employee.id]
       end
     end
   end
