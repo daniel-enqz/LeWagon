@@ -7,25 +7,32 @@ class Router
   end
 
   def run
+    puts ""
     puts "Welcome to FoodDelivery!"
-    puts "           --           "
+    puts "🍑🍿🥦🧇   --    🥓🌭🍔🍒"
 
     while @running
       display_tasks
       action = gets.chomp.to_i
       print `clear`
-      route_action(action)
+      route_meals_action(action)
     end
   end
 
   private
 
-  def route_action(action)
+  def route_meals_action(action)
     case action
     when 1 then @meals_controller.add
     when 2 then @meals_controller.list
     when 3 then @meals_controller.edit
     when 4 then @meals_controller.delete
+    end
+    route_customers_action(action)
+  end
+
+  def route_customers_action(action)
+    case action
     when 5 then @customers_controller.add
     when 6 then @customers_controller.list
     when 7 then @customers_controller.edit
@@ -42,14 +49,14 @@ class Router
 
   def display_tasks
     puts "What do you want to do next?"
-    puts "1 - Add new meal"
-    puts "2 - List all meals"
-    puts "3 - Edit a meal"
-    puts "4 - Delete a meal"
-    puts "5 - Add new customer"
-    puts "6 - List all customers"
-    puts "7 - Edit a customer"
-    puts "8 - Delete a customer"
-    puts "0 - EXIT"
+    puts "1 - 🧃Add new meal"
+    puts "2 - 🍽List all meals"
+    puts "3 - 🥢Edit a meal(COMMING SOON)"
+    puts "4 - 🥊Delete a meal"
+    puts "5 - 🐢Add new customer"
+    puts "6 - 🌊List all customers"
+    puts "7 - 🐎Edit a customer(COMMING SOON)"
+    puts "8 - 🥊Delete a customer"
+    puts "0 - 🌴EXIT"
   end
 end
