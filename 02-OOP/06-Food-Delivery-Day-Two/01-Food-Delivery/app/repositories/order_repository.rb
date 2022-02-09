@@ -43,11 +43,12 @@ class OrderRepository
 
   def load_csv
     CSV.foreach(@orders_csv_path, headers: true, header_converters: :symbol) do |row|
-      row[:id] = row[:id].to_i, row[:delivered] = row[:delivered] == "true"
-      row[:meal_id] = row[:meal_id].to_i, row[:customer_id] = row[:customer_id].to_i
+      row[:delivered] = row[:delivered] == "true"
+      row[:meal_id] = row[:meal_id].to_i
+      row[:customer_id] = row[:customer_id].to_i
       row[:employee_id] = row[:employee_id].to_i
       @elements << Order.new(
-        id: row[:id], delivered: row[:delivered], meal: @meal_repository.find(row[:meal_id]),
+        id: row[:id].to_i, delivered: row[:delivered], meal: @meal_repository.find(row[:meal_id]),
         customer: @customer_repository.find(row[:customer_id]), employee: @employee_repository.find(row[:employee_id])
       )
     end
