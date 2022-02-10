@@ -3,6 +3,7 @@ require_relative "../views/meals_view"
 require_relative "../views/employees_view"
 require_relative "../views/customers_view"
 require_relative "../models/order"
+require_relative '../repositories/base_repository'
 require 'pry-byebug'
 
 class OrdersController
@@ -19,15 +20,15 @@ class OrdersController
 
   # MANAGER ACTIONS
   def call_meal
-    all = @meal_repository.all
-    @meals_view.display(all)
-    all[@orders_view.ask_for_index]
+    meals = @meal_repository.all
+    @meals_view.display(meals)
+    meals[@orders_view.ask_for_index]
   end
 
   def call_customer
-    all = @customer_repository.all
-    @customers_view.display(all)
-    all[@orders_view.ask_for_index]
+    customer = @customer_repository.all
+    @customers_view.display(customer)
+    customer[@orders_view.ask_for_index]
   end
 
   def call_employee
