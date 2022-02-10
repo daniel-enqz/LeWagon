@@ -18,7 +18,7 @@ class OrdersController
   end
 
   # MANAGER ACTIONS
-  def add_meal
+  def call_meal
     all = @meal_repository.all
     @meals_view.display(all)
     all[@orders_view.ask_for_index]
@@ -30,16 +30,16 @@ class OrdersController
     all[@orders_view.ask_for_index]
   end
 
-  def call_riders
+  def call_employee
     riders = @employee_repository.all_riders
     @employees_view.display(riders)
     riders[@orders_view.ask_for_index]
   end
 
   def add
-    meal = add_meal
+    meal = call_meal
     customer = call_customer
-    rider = call_riders
+    rider = call_employee
     new_order = Order.new(meal: meal, customer: customer, employee: rider)
     @order_repository.create(new_order)
   end

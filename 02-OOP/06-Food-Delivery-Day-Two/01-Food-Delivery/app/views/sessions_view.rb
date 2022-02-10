@@ -6,7 +6,7 @@ class SessionsView
   end
 
   def greet(employee)
-    puts "Welcome, #{employee}!"
+    puts "Welcome, #{employee.username.capitalize}!"
   end
 
   def login_error
