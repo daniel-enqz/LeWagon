@@ -1,5 +1,7 @@
 require_relative "../views/orders_view"
 require_relative "../views/meals_view"
+require_relative "../views/employees_view"
+require_relative "../views/customers_view"
 require_relative "../models/order"
 require 'pry-byebug'
 
@@ -12,24 +14,32 @@ class OrdersController
     @orders_view         = OrdersView.new
     @meals_view          = MealsView.new
     @customers_view      = CustomersView.new
+    @employees_view      = EmployeesView.new
   end
 
-  # :meal, :customer, :employee, :delivered :id
-
   # MANAGER ACTIONS
-  def add
+  def add_meal
     all = @meal_repository.all
-    # @meals_view.display(all)
-    meal = all[@orders_view.ask_for_index]
+    @meals_view.display(all)
+    all[@orders_view.ask_for_index]
+  end
 
+  def call_customer
     all = @customer_repository.all
-    # @customers_view.display(all)
-    customer = all[@orders_view.ask_for_index]
+    @customers_view.display(all)
+    all[@orders_view.ask_for_index]
+  end
 
+  def call_riders
     riders = @employee_repository.all_riders
-    # @orders_view.display(riders)
-    rider = riders[@orders_view.ask_for_index]
+    @employees_view.display(riders)
+    riders[@orders_view.ask_for_index]
+  end
 
+  def add
+    meal = add_meal
+    customer = call_customer
+    rider = call_riders
     new_order = Order.new(meal: meal, customer: customer, employee: rider)
     @order_repository.create(new_order)
   end
@@ -40,10 +50,16 @@ class OrdersController
   end
 
   # RIDER ACTIONS
-  def list_my_orders(employee)
-    # binding.pry
-    # @order_repository.employee_undelivered(employee)
+  def list_my_orders(current_user)
+    orders = @order_repository.undelivered_from(current_user)
+    @orders_view.display(orders)
   end
 
-  def mark_as_delivered; end
+  def mark_as_delivered(current_user)
+    orders = @order_repository.undelivered_from(current_user)
+    @orders_view.display(orders)
+    index = @orders_view.ask_for_index
+    order = orders[index]
+    @order_repository.mark_as_delivered(order.id)
+  end
 end

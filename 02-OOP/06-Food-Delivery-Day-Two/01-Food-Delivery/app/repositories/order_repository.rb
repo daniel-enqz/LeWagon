@@ -22,12 +22,23 @@ class OrderRepository
     save_to_csv
   end
 
-  def employee_undelivered(employee)
-    @elements.select { |order| order if order.employee.id == employee.id }
-  end
-
   def undelivered_orders
     @elements.select { |element| element if element.delivered? == false }
+  end
+
+  def undelivered_from(employee)
+    undelivered_orders.select do |order|
+      order.employee == employee
+    end
+  end
+
+  def mark_as_delivered(id)
+    find(id).deliver!
+    save_to_csv
+  end
+
+  def find(id)
+    @elements.find { |order| order.id == id }
   end
 
   private
@@ -36,7 +47,7 @@ class OrderRepository
     CSV.open(@orders_csv_path, "wb") do |csv|
       csv << ["id", "delivered", "meal_id", "customer_id", "employee_id"]
       @elements.each do |order|
-        csv << [order.id, order.delivered, order.meal.id, order.customer.id, order.employee.id]
+        csv << [order.id, order.delivered?, order.meal.id, order.customer.id, order.employee.id]
       end
     end
   end
