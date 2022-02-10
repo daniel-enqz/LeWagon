@@ -1,4 +1,3 @@
-require 'pry-byebug'
 class OrdersView
   def ask_for_index
     puts "What number?"
@@ -8,13 +7,14 @@ class OrdersView
 
   def display(orders)
     orders.each_with_index do |order, index|
-      puts "#{index + 1} #{order}"
+      puts "#{index + 1} 🍔MEAL TO DELIVER: #{order.meal.name} 🙋CUSTOMER NAME: #{order.customer.name}
+      🏠CUSTOMER ADDRESS: #{order.customer.address}"
     end
   end
 
   def display_undelivered_orders(all)
     all.each_with_index do |order, _index|
-      puts "#{order.meal.name}, #{order.employee.username}, #{order.customer.name}"
+      puts "🍔MEAL: #{order.meal.name}, 🚴🏻RIDER: #{order.employee.username.capitalize}, 🙋: #{order.customer.name}"
     end
   end
 
