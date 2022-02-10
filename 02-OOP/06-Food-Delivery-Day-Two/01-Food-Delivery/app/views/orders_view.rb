@@ -17,6 +17,4 @@ class OrdersView
       puts "🍔MEAL: #{order.meal.name}, 🚴🏻RIDER: #{order.employee.username.capitalize}, 🙋: #{order.customer.name}"
     end
   end
-
-  def display_my_orders(order); end
 end
