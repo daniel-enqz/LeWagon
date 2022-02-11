@@ -20,3 +20,4 @@ DB.execute("INSERT INTO `posts` (title, url, votes) VALUES ('Mozilla', 'www.mozi
 DB.execute("INSERT INTO `posts` (title, url, votes) VALUES ('Stackoverflow', 'www.stackoverflow.com', '4300')")
 
 # Write your test code here (and run `ruby test.rb` in your terminal to run it):
+p DB.execute("SELECT * FROM posts WHERE id = 3")
