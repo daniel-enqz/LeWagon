@@ -24,18 +24,21 @@ class PostsController
     votes = @view.ask_for("votes").to_i
     post = Post.new(title: title, url: url, votes: votes)
     post.save
+    @view.show_greeting
+    index
   end
 
   def update
     # TODO: implement updating an existing post
     index
-    all = Post.all
     index_to_update = @view.ask_index
     title = @view.ask_for("title")
     url = @view.ask_for("url")
-    votes = all[index_to_update - 1].votes
+    votes = Post.find(index_to_update).votes
     post = Post.new(title: title, url: url, id: index_to_update, votes: votes)
     post.save
+    @view.show_greeting
+    index
   end
 
   def destroy
@@ -43,17 +46,21 @@ class PostsController
     index_to_update = @view.ask_index
     post = Post.find(index_to_update)
     post.destroy
+    post.save
+    @view.show_greeting
+    index
   end
 
   def upvote
     # TODO: implement upvoting a post
     index
-    all = Post.all
     index_to_update = @view.ask_index
-    votes = all[index_to_update - 1].votes + 1
-    title = all[index_to_update - 1].title
-    url = all[index_to_update - 1].url
-    post = Post.new(title: title, url: url, id: index_to_update, votes: votes)
+    votes = Post.find(index_to_update).votes
+    title = Post.find(index_to_update).title
+    url = Post.find(index_to_update).url
+    post = Post.new(title: title, url: url, id: index_to_update, votes: votes + 1)
     post.save
+    @view.show_greeting
+    index
   end
 end

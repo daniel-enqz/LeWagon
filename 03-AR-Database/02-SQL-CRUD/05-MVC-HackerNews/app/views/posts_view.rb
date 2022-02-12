@@ -14,6 +14,11 @@ class PostsView
   end
 
   def display(all)
-    all.each { |post| puts "-#{post.id}, TITLE:#{post.title}, URL:#{post.url}, VOTES:#{post.votes}" }
+    all.each_with_index { |post, index| puts "-#{index + 1}, TITLE:#{post.title}, URL:#{post.url}, VOTES:#{post.votes}" }
+  end
+
+  def show_greeting
+    puts ".\n" * 30
+    puts "DONE! 😃"
   end
 end
