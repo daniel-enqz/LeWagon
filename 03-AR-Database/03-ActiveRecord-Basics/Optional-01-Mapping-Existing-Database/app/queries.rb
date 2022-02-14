@@ -1,9 +1,11 @@
 def reversed_sorted_artists
   # TODO: return an ActiveRecord::Relation (array) of Artist, in reversed alphabetical order
+  Artist.all.order(name: :desc)
 end
 
 def love_tracks
   # TODO: return an ActiveRecord::Relation (array) of Track which sings about Love
+  Track.where()
 end
 
 def long_tracks(min_length)
