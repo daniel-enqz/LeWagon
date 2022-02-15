@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   validates :email, format: { with: /\A.*@.*\.com\z/ }
   validates :username, uniqueness: true
   # TODO: Add some callbacks
-  after_create :send_email
+  after_save :send_email
 
   private
 
