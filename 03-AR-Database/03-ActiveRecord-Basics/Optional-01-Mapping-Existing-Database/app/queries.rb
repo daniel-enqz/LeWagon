@@ -19,6 +19,5 @@ def top_five_artists(genre_name)
         .joins(albums: { tracks: :genre })
         .where(genres: { name: genre_name })
         .group('artists.name')
-        .order('track_count DESC')
-        .limit(5)
+        .order('track_count DESC').limit(5)
 end
