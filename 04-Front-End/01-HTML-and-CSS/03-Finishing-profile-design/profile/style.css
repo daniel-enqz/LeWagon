@@ -2,14 +2,14 @@
 
 /* General Style Rules for fonts and colors*/
 body {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   font-family: 'Oswald', sans-serif;
 }
 
 /*---------------------------------------------------------------------CLASSES*/
 /*---------------------------------------------------MAIN CONTAINERS*/
 .page-content {
-  margin-left: 200px;
+  margin-left: 300px;
 }
 
 .sidebar {
@@ -33,7 +33,7 @@ body {
 }
 
 .container {
-  width: 800px; /* set the width of your container */
+   /* set the width of your container */
   margin: 40px auto; /* set margins: top/bottom: 40px; left/right: automatic */
 }
 
@@ -45,7 +45,7 @@ body {
 .card-white {
   background: white;                         /* White background */
   padding: 30px;
-  margin: 20px;                             /* Internal space */
+  margin: 40px;                             /* Internal space */
   border-radius: 7px;                        /* Small radius */
   box-shadow: 0 10px 30px rgb(114, 110, 110);    /* Light shadow */
   }
@@ -117,8 +117,9 @@ a:hover{
 
 /*---------------------------------------------------ID'S*/
 #profile_image {
-  width: 279.25px;
-  height: 418.375px;
+  width: 200px;
+  height: 220px;
+  border-radius: 50%;
   box-shadow: 0px 10px 10px rgba(0,0,0,0.9);
 }
 
