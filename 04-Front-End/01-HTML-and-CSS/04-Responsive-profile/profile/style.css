@@ -3,16 +3,16 @@
 /* General Style Rules for fonts and colors*/
 body {
   background-color: rgb(255, 255, 255);
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Oswald', sans-serif
 }
 
 /*---------------------------------------------------------------------CLASSES*/
 /*---------------------------------------------------MAIN CONTAINERS*/
 .page-content {
-  margin-left: 300px;
+  margin-left: 300px
 }
 
-.sidebar {
+#sidebar {
   position: fixed;
   width: 300px;
   left: 0;
@@ -20,7 +20,7 @@ body {
   bottom: 0;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
-  animation: gradient 10s ease infinite;
+  animation: gradient 10s ease infinite
 }
 
 .sidebar-inline {
@@ -28,18 +28,17 @@ body {
 	padding-left: 20px;
   font-weight: bold;
   font-size: 25px;
-  line-height : 70px;
-
+  line-height : 70px
 }
 
 .container {
    /* set the width of your container */
-  margin: 40px auto; /* set margins: top/bottom: 40px; left/right: automatic */
+  margin: 40px auto /* set margins: top/bottom: 40px; left/right: automatic */
 }
 
 .container :hover{
   transition: 1s ease;
-  transform: translateX(2rem);
+  transform: translateX(2rem)
 }
 
 .card-white {
@@ -47,70 +46,99 @@ body {
   padding: 30px;
   margin: 40px;                             /* Internal space */
   border-radius: 7px;                        /* Small radius */
-  box-shadow: 0 10px 30px rgb(114, 110, 110);    /* Light shadow */
+  box-shadow: 0 10px 30px rgb(114, 110, 110)    /* Light shadow */
   }
 
 .card-white :hover{
-  transform: none;
+  transform: none
 }
 
 /*----------------------------------------------------------------KEYFRAMES*/
 /* -------------------------KEY FRAME FOR SIDEBAR GRADIENT ANIMATION */
 @keyframes gradient {
   0% {
-      background-position: 0% 50%;
+      background-position: 0% 50%
   }
   50% {
-      background-position: 100% 50%;
+      background-position: 100% 50%
   }
   100% {
-      background-position: 0% 50%;
+      background-position: 0% 50%
   }
 }
 
 /*----------------------  ---MEDIA QUERY RESPONSIVENESS*/
+@media (max-width: 960px) {
+  /* For a screen < 960px, this CSS will be read */
+  .container {
+    width: 700px
+  }
+}
+
+@media (max-width: 720px) {
+  /* For a screen < 720px, this CSS will be read */
+  .container {
+    width: 500px
+  }
+}
+
+@media (max-width: 540px) {
+  /* For a screen < 540px, this CSS will be read */
+  .page-content {
+    margin-left: 0px
+  }
+  #sidebar {
+    display: none
+  }
+
+  body {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite
+  }
+}
 
 /*---------------------------------------------------DESIGN CLASSES*/
 .slogan{
-  color: black;
+  color: black
 }
 
 .text-blue{
-  color: #003cff;
+  color: #003cff
 }
 
 .text-center{
-  text-align: center;
+  text-align: center
 }
 
 .font-weight{
-  font-weight: bolder;
+  font-weight: bolder
 }
 
 .list-inline {
   list-style: none;
-  padding-left: 0px;
+  padding-left: 0px
 }
 
 .list-inline li{
   display: inline;
-  padding: 10px;
+  padding: 10px
 }
 
 .list-inline i {
   font-size: 50px;
-  color:black;
+  color:black
 }
 
 a:link, a:visited, a:active{
   text-decoration: none;
-  color: rgb(255, 255, 255);
+  color: rgb(255, 255, 255)
 }
 
 a:hover{
   transform: translateX(1rem);
   color: #000000;
-  transition: 0.5s ease;
+  transition: 0.5s ease
 }
 
 
@@ -120,33 +148,33 @@ a:hover{
   width: 200px;
   height: 220px;
   border-radius: 50%;
-  box-shadow: 0px 10px 10px rgba(0,0,0,0.9);
+  box-shadow: 0px 10px 10px rgba(0,0,0,0.9)
 }
 
 #linkedin :hover{
   color:#0077B5;
-  transition: color 0.5s ease;
+  transition: color 0.5s ease
 }
 
 #github :hover{
   color:#3c09f4;
-  transition: color 0.5s ease;
+  transition: color 0.5s ease
 }
 
 #name_heading{
   font-weight: 600;
   color: #072227;
   font-size: 30px;
-  font-weight: bold;
+  font-weight: bold
 }
 
 #newsletter{
   width: 750px; /* set the width of your container */
   margin: 40px auto; /* set margins: top/bottom: 40px; left/right: automatic */
   background-color: #000000;
-  color: #00a6ff;
+  color: #00a6ff
 }
 
 #intro{
-  font-size: 20px;
+  font-size: 20px
 }
