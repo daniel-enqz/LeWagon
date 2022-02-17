@@ -4,6 +4,11 @@
 /* Fontawesome */
 @import url('https://use.fontawesome.com/releases/v5.6.3/css/all.css');
 
+/* Importing all components file */
+@import url("components/containers.css");
+@import url("components/buttons.css");
+@import url("components/cards.css");
+@import url("components/links.css");
 /* Utilities */
 body {
   margin: 0;
@@ -18,5 +23,8 @@ a {
   text-decoration: none;
 }
 
-/* Custom design below! */
+i {
+  color: white;
+}
 
+/* Custom design below! */
