@@ -3,8 +3,9 @@
 @import url("https://use.fontawesome.com/releases/v5.0.10/css/all.css");
 
 /* Components */
-/* @import url("components/name_of_component.css"); */
-
+@import url("components/containers.css");
+@import url("components/buttons.css");
+@import url("components/images.css");
 
 body {
   margin: 0;
@@ -15,7 +16,10 @@ body {
   text-align: center;
 }
 .container {
-  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  max-width: 700px;
   margin: 50px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgb(0 0 0 / 30%);
 }
-
