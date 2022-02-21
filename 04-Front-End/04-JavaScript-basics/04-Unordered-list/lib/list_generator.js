@@ -12,5 +12,3 @@ const unorderedList = (items) => {
 };
 
 module.exports = { listItem, unorderedList }; // Do not remove.
-
-console.log(unorderedList(['milk', 'butter', 'bread']));
