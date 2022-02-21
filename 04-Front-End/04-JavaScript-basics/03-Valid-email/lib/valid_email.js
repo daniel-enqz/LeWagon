@@ -5,5 +5,3 @@ const valid = (email) => {
 };
 
 module.exports = valid; // Do not remove.
-
-console.log(valid('boris.lewagon.org'));
