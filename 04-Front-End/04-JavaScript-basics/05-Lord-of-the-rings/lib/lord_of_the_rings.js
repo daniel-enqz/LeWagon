@@ -6,7 +6,6 @@ const isGood = (soldierType) => {
 const buildSoldierObject = (battlefield) => {
   // TODO: Given a battlefield (String), return an object of forces.
   const rellenoDeJson = battlefield.replace(/([A-z-]+)/g, '"$1"');
-  const splitted = rellenoDeJson.split(",");
   return JSON.parse(`{${rellenoDeJson}}`);
 };
 
