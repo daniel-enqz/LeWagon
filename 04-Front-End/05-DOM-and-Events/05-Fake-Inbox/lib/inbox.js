@@ -2,10 +2,21 @@
 
 const hasNewMessage = () => {
   // TODO: return true with a probability of 20%.
+  const value1 = Math.random() * (11 - 1) + 1;
+  return value1 <= 2;
 };
 
 const newMessage = () => {
   // TODO: return a random message as an object with two keys, subject and sender
+  const array = [{
+    sender: 'GitHub Team',
+    subject: 'Welcome to GitHub'
+  },
+  {
+    sender: 'Arnold Schwarzenegger',
+    subject: "I'm Back"
+  }];
+  return array[Math.floor(Math.random() * array.length)];
 };
 
 const appendMessageToDom = (message) => {
