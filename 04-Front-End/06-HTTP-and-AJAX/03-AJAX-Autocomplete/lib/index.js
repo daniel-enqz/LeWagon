@@ -8,7 +8,7 @@ const updateSearch = (query) => {
     .then((data) => {
       data.words.forEach((element) => {
         console.log(element);
-        results.insertAdjacentHTML("beforeend", `<li>${element}</li>`);
+        results.insertAdjacentHTML("beforeend", `<div id="guesses"><li>${element}</li></div>`);
       });
     });
 };
