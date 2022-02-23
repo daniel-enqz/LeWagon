@@ -16,33 +16,30 @@ const newMessage = () => {
     sender: 'Arnold Schwarzenegger',
     subject: "I'm Back"
   }];
-  return array[Math.floor(Math.random() * array.length)];
+  const object = array[Math.floor(Math.random() * array.length)];
+  return object;
 };
 
 const appendMessageToDom = (message) => {
   // TODO: append the given message to the DOM (as a new row of `#inbox`)
+  const object = Object.values(message);
+  const list = document.querySelector('#inbox');
+  list.insertAdjacentHTML('afterbegin', `<div class="row message unread">
+  <div class="col-3">${object[0]}</div>
+  <div class="col-9">${object[1]}</div>
+  </div>`);
 };
 
 const refresh = () => {
   // TODO: Implement the global refresh logic. If there is a new message,
   //       append it to the DOM. Update the unread counter in title as well.
+  if (hasNewMessage()) {
+    appendMessageToDom(newMessage());
+    const count = document.querySelector('#count');
+    const countUnread = document.querySelectorAll('#inbox .unread');
+    count.innerText = `(${countUnread.length})`;
+  }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Do not remove these lines:
 document.addEventListener("DOMContentLoaded", () => {
