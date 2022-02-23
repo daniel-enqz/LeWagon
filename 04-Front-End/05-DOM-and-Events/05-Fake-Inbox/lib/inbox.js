@@ -2,7 +2,7 @@
 
 const hasNewMessage = () => {
   // TODO: return true with a probability of 20%.
-  const value1 = Math.random() * (11 - 1) + 1;
+  const value1 = Math.random() * (10 - 1) + 1;
   return value1 <= 2;
 };
 
