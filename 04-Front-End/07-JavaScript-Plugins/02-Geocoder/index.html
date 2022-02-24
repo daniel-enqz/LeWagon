@@ -11,14 +11,14 @@
   </head>
 
   <body>
-    <div class="container">
+    <div class="container" data-controller="display-coordinates">
       <div class="row justify-content-center">
         <div class="col-6">
-          <form class="d-flex my-5">
-            <input type="text" class="form-control flex-grow-1 me-2" placeholder="Type an address">
+          <form class="d-flex my-5" data-action="submit->display-coordinates#display">
+            <input type="text" class="form-control flex-grow-1 me-2" placeholder="Type an address" data-display-coordinates-target="userInput">
             <input type="submit" value="Geocode!" class="btn btn-primary">
           </form>
-          <p class="font-monospace lead text-center fw-bold">
+          <p class="font-monospace lead text-center fw-bold" data-display-coordinates-target="coordinatesPlace">
             <!-- Display the coordinates here -->
           </p>
           <div id="map" style="height: 300px; width: 600px">
