@@ -1,8 +1,7 @@
-// eslint-import/extensions": "off"
-import { Application } from "@hotwired/stimulus";
-import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers";
+import { Application } from "@hotwired/stimulus"
+import { definitionsFromContext } from "@hotwired/stimulus-webpack-helpers"
 
-window.Stimulus = Application.start();
-const context = require.context("./controllers", true, /\.js$/);
+window.Stimulus = Application.start()
+const context = require.context("./controllers", true, /\.js$/)
 // eslint-disable-next-line no-undef
-Stimulus.load(definitionsFromContext(context));
+Stimulus.load(definitionsFromContext(context))
