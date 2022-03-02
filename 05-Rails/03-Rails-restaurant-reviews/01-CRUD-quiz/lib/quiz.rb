@@ -13,7 +13,7 @@ def generate_model_command
   # TODO: Return a `String` with the command you would run in the terminal to
   # generate a `Restaurant` model that has two fields: name(`String`) and
   # stars(`Integer`).
-  return("rails g model name:string stars:interger")
+  "rails g model Restaurant name:string stars:integer"
 end
 
 def files_created_by_model_generator
@@ -21,8 +21,8 @@ def files_created_by_model_generator
   # for you when run the model generator for a `Restaurant` model (from the
   # question above). Use `YYYYMMDDHHMMSS` for any timestamps.
   [
-    'YYYYMMDDHHMMSS_migration_restaurant.rb',
-    'restaurant.rb'
+    'db/migrate/YYYYMMDDHHMMSS_create_restaurants.rb',
+    'app/models/restaurant.rb'
   ]
 end
 
@@ -31,7 +31,7 @@ def crud_routing
   # we don't want to write all of them in our routes. Return a `String` with
   # the single line we would add in `config/routes.rb` to add all seven CRUD
   # routes for our `Restaurant` model.
-  return("rosources: :restaurant")
+  return("resources :restaurants")
 end
 
 def controller_actions
@@ -39,7 +39,7 @@ def controller_actions
   # methods in our `RestaurantsController`. Return an `Array` with the seven
   # controller actions that go along with the CRUD routes.
   [
-    "restaurants#index", "restaurants#show", "restaurants#new",
-    "restaurants#create", "restaurants#edit", "restaurants#update", "restaurants#destroy"
+    "index", "show", "new",
+    "create", "edit", "update", "destroy"
   ]
 end
