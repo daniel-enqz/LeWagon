@@ -5,7 +5,6 @@ require_relative "black_jack"
 
 player_score = pick_player_card
 bank_score = pick_bank_score
-
 puts "Card? 'y' or 'yes' to get a new card"
 user_choice = gets.chomp
 
